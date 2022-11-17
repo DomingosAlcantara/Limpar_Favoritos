@@ -13,23 +13,15 @@ const lerArquivo = (caminho) => new Promise((resolve) => {
 const noPrincipal = (no) => no.roots.bookmark_bar.children;
 
 // const buscarPeloTipo = (tipo) => (itens) = itens.filter((item) => item.type === tipo);
-// function buscarPeloTipo(tipo) {
-//   return function (itens) {
-//     return itens.filter((item) => item.type === tipo);
-//   };
-// };
+function buscarQuant(tipo) {
+  return function (itens) {
+    let count = itens.filter((item) => item.type === tipo);
+    return count.length;
+  };
+};
 
-//function buscarPeloTipo(tipo) {
-  // return function (itens) {
-  //   return itens.reduce((tipo, item) => {
-  //     let contador = "Total de Pastas:";
-  //     contador = ((item.type === tipo) || 0) + 1;
+// TODO: Gerar objeto com a quantidade e os itens
 
-  //     return contador;
-  //   }, {});
-  // };
-//  return tipo
-//};
 
 
 
