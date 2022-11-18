@@ -1,5 +1,6 @@
 const fs = require("fs");
 const path = require("path");
+const Favoritos = require("./models/favoritos");
 
 const arqFavoritos = "../data/Bookmarks";
 const isType = ["folder", "url"];
