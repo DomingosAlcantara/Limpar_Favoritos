@@ -5,11 +5,13 @@ class Favoritos {
     };
   }
 
-  quantItens(array, tipos){
-    const pastas = this.buscarPeloTipo;
-    const objItens = {
-      "Pastas": 0,        //Deve retornar a quantidade de pastas encontrada
-      "Links": 0          //Quantidade de links encontrados
+  quantItens(array){
+    const objetos = this.buscarPeloTipo(array);
+    return function (tipos) {
+      const objItens = {
+        "Pastas": objetos(tipos[0]),        //Deve retornar a quantidade de pastas encontrada
+        "Links": objetos(tipos[1])          //Quantidade de links encontrados
+      }
     }
     return objItens;
   }
