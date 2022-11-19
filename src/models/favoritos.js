@@ -4,13 +4,14 @@ class Favoritos {
       return array.filter((item) => item.type === tipo);
     };
   }
+  
+  listObjetos = (array) => this.buscarPeloTipo(array);
 
   quantItens(array){
-    const objetos = this.buscarPeloTipo(array);
     return function (tipos) {
       const objItens = {
-        "Pastas": objetos(tipos[0]),        //Deve retornar a quantidade de pastas encontrada
-        "Links": objetos(tipos[1])          //Quantidade de links encontrados
+        "Pastas": listObjetos(tipos[0]).length,        //Deve retornar a quantidade de pastas encontrada
+        "Links": listObjetos(tipos[1]).length          //Quantidade de links encontrados
       }
     }
     return objItens;
