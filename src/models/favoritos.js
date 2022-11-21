@@ -11,7 +11,9 @@ class Favoritos {
     return function (tipos) {
       const objItens = {
         "Pastas": listObjetos(tipos[0]).length,        //Deve retornar a quantidade de pastas encontrada
-        "Links": listObjetos(tipos[1]).length          //Quantidade de links encontrados
+        "Lista de Pastas": listObjetos(tipos[0]),
+        "Links": listObjetos(tipos[1]).length,          //Quantidade de links encontrados
+        "Lista de Links": listObjetos(tipos[1])
       }
       return objItens;
     }
