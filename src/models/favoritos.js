@@ -5,9 +5,10 @@ class Favoritos {
     };
   }
   
+  listObjetos = (array) => this.buscarPeloTipo(array);
   
   quantItens(array){
-    const listObjetos = this.buscarPeloTipo(array);
+    //const listObjetos = this.buscarPeloTipo(array);
     return function (tipos) {
       const objItens = {
         "Pastas": listObjetos(tipos[0]).length,        //Deve retornar a quantidade de pastas encontrada
@@ -17,6 +18,10 @@ class Favoritos {
       }
       return objItens;
     }
+  }
+
+  checarLinks(array){
+
   }
 }
 
