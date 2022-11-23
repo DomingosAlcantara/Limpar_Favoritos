@@ -5,9 +5,9 @@
     };
   };
 
-  const retornandoApenasNome = (array) => array.map((item) => item.name);
+  const retornandoListaDeNomes = (array) => array.map((item) => item.name);
 
-  
+
   const quantItens = (array) => {
     const listObjetos = buscarPeloTipo(array);
     return function (tipos) {
