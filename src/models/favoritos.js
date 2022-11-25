@@ -1,5 +1,5 @@
-const fetch = require('node-fetch');
-const validacoes = require('../../../../git-e-github/semana5/las-api/src/infraestrutura/validacoes');
+const fetch = require("node-fetch");
+const validacoes = require("../../../../git-e-github/semana5/las-api/src/infraestrutura/validacoes");
 
 // class Favoritos {
 const buscarPeloTipo = (array) => (tipo) =>
