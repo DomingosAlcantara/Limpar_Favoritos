@@ -9,12 +9,12 @@ const retornandoListaDeNomes = (array) => array.map((item) => item.name);
 
 const checarLinks = (array) => {};
 
-const quantItens = (tipos) => {
+const quantItens = (tipo) => {
   return (array) => {
     const listObjetos = buscarPeloTipo(array);
     const objItens = {
-      Pastas: listObjetos(tipos[0]).length, //Deve retornar a quantidade de pastas encontrada
-      Links: listObjetos(tipos[1]).length, //Quantidade de links encontrados
+      // Pastas: listObjetos(tipos[0]).length, //Deve retornar a quantidade de pastas encontrada
+      Links: retornandoListaDeNomes(listObjetos(tipo)), //Quantidade de links encontrados
     };
     return objItens;
   };

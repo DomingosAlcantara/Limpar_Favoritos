@@ -1,9 +1,9 @@
-const fs = require('fs');
-const path = require('path');
-const Favoritos = require('./models/favoritos');
+const fs = require("fs");
+const path = require("path");
+const Favoritos = require("./models/favoritos");
 
-const arqFavoritos = '../data/Bookmarks';
-const isType = ['folder', 'url'];
+const arqFavoritos = "../data/Bookmarks";
+const isType = ["folder", "url"];
 
 const lerArquivo = (caminho) =>
   new Promise((resolve) => {
@@ -22,5 +22,5 @@ console.log(`O arquivo esta no diretório: ${caminho}`);
 
 lerArquivo(caminho)
   .then(noPrincipal)
-  .then(Favoritos.quantItens(isType))
+  .then(Favoritos.quantItens(isType[1]))
   .then(console.log);
