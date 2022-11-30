@@ -22,5 +22,5 @@ console.log(`O arquivo esta no diretório: ${caminho}`);
 
 lerArquivo(caminho)
   .then(noPrincipal)
-  .then(Favoritos.quantItens(isType[1]))
+  .then(Favoritos.buscarPeloTipo(isType[1]))
   .then(console.log);

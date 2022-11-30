@@ -1,22 +1,29 @@
 const fetch = require("node-fetch");
-const validacoes = require("../../../../git-e-github/semana5/las-api/src/infraestrutura/validacoes");
+const Validacoes = require("../../../../git-e-github/semana5/las-api/src/infraestrutura/validacoes");
 
 // class Favoritos {
-const buscarPeloTipo = (array) => (tipo) =>
+const buscarPeloTipo = (tipo) => (array) =>
   array.filter((item) => item.type === tipo);
 
 const retornandoListaDeNomes = (array) => array.map((item) => item.name);
 
-const checarLinks = (array) => {};
+const checarLinks = (array) => {
+  array.map((item) => {
+    item.ativo = Validacoes.validarUrl(item.url);
+  });
+};
 
-const quantItens = (tipo) => {
+const percorrerPastas = (array) => {};
+
+const checarTipo = (tipo) => {
   return (array) => {
     const listObjetos = buscarPeloTipo(array);
-    const objItens = {
-      // Pastas: listObjetos(tipos[0]).length, //Deve retornar a quantidade de pastas encontrada
-      Links: retornandoListaDeNomes(listObjetos(tipo)), //Quantidade de links encontrados
-    };
-    return objItens;
+    // const objItens = {
+    //   Pastas: listObjetos(tipos[0]).length, //Deve retornar a quantidade de pastas encontrada
+    //   Links: retornandoListaDeNomes(listObjetos(tipo)), //Quantidade de links encontrados
+    // };
+    // return objItens;
+    return listObjetos(tipo);
   };
 };
 
@@ -24,6 +31,6 @@ const quantItens = (tipo) => {
 
 module.exports = {
   buscarPeloTipo,
-  quantItens,
+  checarTipo,
   retornandoListaDeNomes,
 };
