@@ -4,6 +4,7 @@ const Favoritos = require("./models/favoritos");
 
 const arqFavoritos = "../data/Bookmarks";
 const isType = ["folder", "url"];
+const caminho = path.join(__dirname, arqFavoritos);
 
 const lerArquivo = (caminho) =>
   new Promise((resolve) => {
@@ -16,11 +17,7 @@ const noPrincipal = (no) => no.roots.bookmark_bar.children;
 
 // TODO: Gerar objeto com a quantidade e os itens
 
-const caminho = path.join(__dirname, arqFavoritos);
-
 console.log(`O arquivo esta no diretório: ${caminho}`);
 
-lerArquivo(caminho)
-  .then(noPrincipal)
-  .then(Favoritos.buscarPeloTipo(isType[1]))
-  .then(console.log);
+lerArquivo(caminho).then(noPrincipal).then(Favoritos.percorrerPastas);
+// .then(console.log);

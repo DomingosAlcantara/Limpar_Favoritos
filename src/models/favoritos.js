@@ -1,19 +1,37 @@
+"use strict";
 const fetch = require("node-fetch");
-const Validacoes = require("../../../../git-e-github/semana5/las-api/src/infraestrutura/validacoes");
+// const Validacoes = require("../../../../git-e-github/semana5/las-api/src/infraestrutura/validacoes");
 
 // class Favoritos {
 const buscarPeloTipo = (tipo) => (array) =>
   array.filter((item) => item.type === tipo);
 
-const retornandoListaDeNomes = (array) => array.map((item) => item.name);
+const retornarListaDeLinks = (array) => buscarPeloTipo("url")(array);
+const retornarListaDePastas = (array) => buscarPeloTipo("folder")(array);
+const urlValido = (url) => url.status === 200;
 
-const checarLinks = (array) => {
-  array.map((item) => {
-    item.ativo = Validacoes.validarUrl(item.url);
+const validarLink = (item) =>
+  fetch(item.url).then(console.log).catch(console.log);
+
+const checarLinks = (array) => array.map(validarLink);
+
+const percorrerPastas = (array) => {
+  return array.map((pasta) => {
+    let pastaFilho = pasta.children;
+    let quantPastas = retornarListaDePastas(pastaFilho).length;
+    let quanUrls = retornarListaDeLinks(pastaFilho).length;
+    console.log(`Estamos na pasta ${pasta.name}`);
+    console.log(`Há um total de ${quantPastas} pastas, e ${quanUrls} links`);
+    0;
+    console.log(retornarListaDeLinks(pastaFilho));
+    // console.log(retornarListaDePastas(array));
+    // console.log(quantPastas);
+
+    // if (quantPastas > 0) percorrerPastas(retornarListaDePastas(pastaFilho));
+    if (Array.isArray(pastaFilho))
+      percorrerPastas(retornarListaDePastas(pastaFilho));
   });
 };
-
-const percorrerPastas = (array) => {};
 
 const checarTipo = (tipo) => {
   return (array) => {
@@ -32,5 +50,6 @@ const checarTipo = (tipo) => {
 module.exports = {
   buscarPeloTipo,
   checarTipo,
-  retornandoListaDeNomes,
+  retornarListaDeLinks,
+  percorrerPastas,
 };
