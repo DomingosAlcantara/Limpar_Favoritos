@@ -14,15 +14,16 @@ const validarLink = (item) =>
   fetch(item.url).then(console.log).catch(console.log);
 
 const checarLinks = (array) => array.map(validarLink);
+const pastaFilho = pasta => pasta.children || null;
 
 const percorrerPastas = (array) => {
   return array.map((pasta) => {
-    let pastaFilho = pasta.children;
-    let quantPastas = retornarListaDePastas(pastaFilho).length;
+    // let pastaFilho = pasta.children;
+    let quantPastas = retornarListaDePastas(pastaFilho(pasta)).length;
     let quanUrls = retornarListaDeLinks(pastaFilho).length;
     console.log(`Estamos na pasta ${pasta.name}`);
     console.log(`Há um total de ${quantPastas} pastas, e ${quanUrls} links`);
-    0;
+    
     console.log(retornarListaDeLinks(pastaFilho));
     // console.log(retornarListaDePastas(array));
     // console.log(quantPastas);
