@@ -14,23 +14,23 @@ const validarLink = (item) =>
   fetch(item.url).then(console.log).catch(console.log);
 
 const checarLinks = (array) => array.map(validarLink);
-const pastaFilho = pasta => pasta.children || null;
+const pastaFilho = pasta => pasta.children;
 
 const percorrerPastas = (array) => {
-  return array.map((pasta) => {
+  array.map((pasta) => {
     // let pastaFilho = pasta.children;
-    let quantPastas = retornarListaDePastas(pastaFilho(pasta)).length;
-    let quanUrls = retornarListaDeLinks(pastaFilho).length;
-    console.log(`Estamos na pasta ${pasta.name}`);
-    console.log(`Há um total de ${quantPastas} pastas, e ${quanUrls} links`);
+    // let quantPastas = retornarListaDePastas(pastaFilho(pasta)).length;
+    // let quanUrls = retornarListaDeLinks(pastaFilho).length;
+    // console.log(`Estamos na pasta ${pasta.name}`);
+    // console.log(`Há um total de ${quantPastas} pastas, e ${quanUrls} links`);
     
-    console.log(retornarListaDeLinks(pastaFilho));
     // console.log(retornarListaDePastas(array));
     // console.log(quantPastas);
-
+    
     // if (quantPastas > 0) percorrerPastas(retornarListaDePastas(pastaFilho));
-    if (Array.isArray(pastaFilho))
-      percorrerPastas(retornarListaDePastas(pastaFilho));
+    if (Array.isArray(pastaFilho(pasta)))
+    percorrerPastas(retornarListaDePastas(pastaFilho(pasta)));
+    return retornarListaDeLinks(pastaFilho(pasta));
   });
 };
 
