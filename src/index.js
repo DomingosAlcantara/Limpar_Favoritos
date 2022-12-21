@@ -17,10 +17,7 @@ const noPrincipal = (no) => no.roots.bookmark_bar;
 
 // TODO: Gerar objeto com a quantidade e os itens
 
-console.log(`O arquivo esta no diretório: ${caminho}`);
-
 lerArquivo(caminho)
   .then(noPrincipal)
-  .then(Favoritos.pastaFilho)
   .then(Favoritos.percorrerPastas);
-// .then(console.log);
+  // .then(Favoritos.pastaFilho)
