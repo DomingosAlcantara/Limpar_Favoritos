@@ -13,10 +13,13 @@ const lerArquivo = (caminho) =>
     });
   });
 
-const noPrincipal = (no) => no.roots.bookmark_bar;
+const noPrincipal = (no) => no.roots.bookmark_bar.children;
 
 // TODO: Gerar objeto com a quantidade e os itens
 
-lerArquivo(caminho).then(noPrincipal).then(console.log);
-// .then(Favoritos.percorrerPastas);
+lerArquivo(caminho)
+  .then(noPrincipal) //.then(console.log);
+  .then(Favoritos.percorrerPastas);
+// .then(console.log);
+// .then(Favoritos.retornarListaDePastas)
 // .then(Favoritos.pastaFilho)

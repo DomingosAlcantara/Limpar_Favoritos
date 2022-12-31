@@ -4,10 +4,11 @@ const fetch = require("node-fetch");
 
 /**
  * Funções Impuras
- * @param {*} pasta 
- * @returns 
+ * @param {*} pasta
+ * @returns
  */
-const mensagem = (pasta) => (quant) => console.log(`Estamos na pasta ${pasta.name}, com ${quant} links.`)
+const mensagem = (pasta) => (quant) =>
+  console.log(`Estamos na pasta ${pasta.name}, com ${quant} links.`);
 const validarLink = (item) =>
   fetch(item.url).then(console.log).catch(console.log);
 
@@ -16,20 +17,24 @@ const validarLink = (item) =>
 const buscarPeloTipo = (tipo) => (array) =>
   array?.filter((item) => item.type === tipo);
 
-const retornarListaDeLinks = (array) => buscarPeloTipo("url")(array);
-const retornarListaDePastas = (array) => buscarPeloTipo("folder")(array);
 const urlValido = (url) => url.status === 200;
 const checarLinks = (array) => array.map(validarLink);
 const pastaFilho = (pasta) => pasta.children;
 
+const retornarListaDeLinks = (array) => buscarPeloTipo("url")(array);
+const retornarListaDePastas = (array) => buscarPeloTipo("folder")(array);
+const retornarQuantDeLinks = (array) =>
+  retornarListaDeLinks(pastaFilho(array))?.length || 0;
+const retornarQuantDePastas = (array) =>
+  retornarListaDePastas(pastaFilho(array))?.length || 0;
+
 const percorrerPastas = (array) => {
   array.map((pasta) => {
-    const quantUrls = retornarListaDeLinks(pastaFilho(pasta))?.length || 0;
+    const quantUrls = retornarQuantDeLinks(pasta);
     mensagem(pasta)(quantUrls);
-
     if (Array.isArray(pastaFilho(pasta)))
       percorrerPastas(retornarListaDePastas(pastaFilho(pasta)));
-    return retornarListaDeLinks(pastaFilho(pasta));
+    // return retornarListaDeLinks(pastaFilho(pasta));
   });
 };
 
@@ -44,6 +49,8 @@ module.exports = {
   buscarPeloTipo,
   checarTipo,
   retornarListaDeLinks,
+  retornarQuantDeLinks,
+  retornarQuantDePastas,
   percorrerPastas,
   pastaFilho,
 };
